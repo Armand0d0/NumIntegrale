@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "*.cuh": "cpp",
+        "hash_map": "cpp"
+    }
+}
