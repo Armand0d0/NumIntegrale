@@ -313,7 +313,7 @@ struct func *farr[] = {&fun1,&fun2,&fun};//*/
     Cuda cuda{};
 
 double dist_goal = 1e-9;
-double goal = 0.0695179831000;
+double goal = 0.06998745478000;
 int nf = 200;
 int nl =2;
 int iter = 0;
