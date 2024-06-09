@@ -28,19 +28,6 @@ double* op2(double* d,int *l){
     *l = n*n*3;
     return d2;
 }
-/*double* fun1(double* d,int *l){
-        int n = *l;
-    double* d2 = (double*)malloc(sizeof(double)*n*n/2);
-    for(int i=0;i<n;i++){
-        for(int j=i;j<n;j++){
-            d2[i] = d[i];
-            d2[n+i]=1/d[i];
-            d2[n*2+i]=sqrt(d[i]);
-        }
-    }
-    *l=n*n/2;
-    return d2;
-}*/
 void show(double* d, int n){
         double near=0;
         double min=INFINITY;
@@ -64,12 +51,6 @@ enum funcOP{
     MUL,
     SUM,
 };
-/*struct func{
-    int nOP;
-    funcOP* op;
-    //int nFunc = nOP+1;
-    int* funcIds;
-};//*/
 struct func{
     funcOP opType;
     struct func* func1;
@@ -80,7 +61,7 @@ struct func{
 
 };
 
-double eval(struct func* fun, double x, double  (*F[])(double)){////////////////////////////////////////////////////////////////////////
+double eval(struct func* fun, double x, double  (*F[])(double)){
     if(fun->func1 != NULL && fun->func2 != NULL){
         if(fun->opType == COMP){
            return eval(fun->func1,   eval(fun->func2,x,F)   ,F);
@@ -134,13 +115,13 @@ void printFunc(struct func * f){
         cout<<"(f"<<f->funcId1<<c<<"f"<<f->funcId2<<")";
     }
 }
-void show2(struct func *fun[], int n,double* b, int nb,double  (*F[])(double) ){////////
+void show2(struct func *fun[], int n,double* b, int nb,double  (*F[])(double) ){
     double near=0;
     double min=INFINITY;
     struct func *fx;
     int b1 = -1,b2 = -1;
     for(int i=0;i<n;i++){
-    // cout<<d[i]<<"  ";
+
     for(int j=0;j<nb;j++){
         for(int k=j+1;k<nb;k++){
             double ev = (eval(fun[i],b[k],F)-eval(fun[i],b[j],F));
@@ -152,7 +133,7 @@ void show2(struct func *fun[], int n,double* b, int nb,double  (*F[])(double) ){
                     b1 = j;
                     b2 = k;
                 }
-                //cout<<ev<<" ";
+
         }
     }
     }
@@ -205,7 +186,7 @@ struct func* create( int layers, double  (*F[])(double)){
                 Fun->func2 = NULL;
                 Fun->funcId1 = rand()%20 +11;
                 Fun->funcId2 = rand()%31;
-                //cout<<"  rand " << Fun->funcId1<<"  "<< Fun->funcId2<<endl;
+
             }
             return Fun;
 }
@@ -243,24 +224,13 @@ double  (*F[])(double)= {id,f1,f2,f3,f4,f5,f6,f7,f8,f9,fpi,fe,p2,p3,p4,inv,sqrt,
  bornes : 15  20
  */
 
-//free(f);
+
 
 double m1[] = {1,2,3,4,5,6,7,8,9,M_PI,M_E};
 int l=11;
 double *m2 = op1(&m1[0],&l);//1,2,3,4,5,6,7,8,9,M_PI,M_E,   1,2,3,4,5,6,7,8,9,M_PI,M_E,   1  ,2, 3 ,4,5,6,7,8,9,M_PI,M_E
 //                            0 1 2              9    10    11                  20 21     22 23  24             31  32
-/*for (int i=0;i<l;i++){
-    cout<<i<<" : "<<m2[i]<<endl;
-}*/
-/*                          
-struct func fun1 = {.opType = COMP,.func1 =NULL,.func2 = NULL,.funcId1 = 15, .funcId2 = 12};
-struct func fun2 = {.opType = SUM,.func1 =NULL,.func2 = NULL,.funcId1 = 10, .funcId2 = 0};
 
-struct func fun = {.opType = COMP,.func1 = &fun1,.func2 = &fun2};
-
-cout<<"EVAL : "<<eval(&fun,15,f,31 )<<endl;
-struct func *farr[] = {&fun1,&fun2,&fun};//*/
-int nf = 50000;
 int nl = 1;
 int iter = 1;
 cout<<" function nb = "<<nf<<" layer nb = "<<nl<<"iter = "<<iter<<endl;
@@ -270,24 +240,8 @@ for(int i=0;i<iter;i++){
     show2(Farr,nf,m2,l,F);
     destroyArr(Farr,10);
 }
-/*double *m3 = op2(m2,&l);
-double *m4 = op2(m3,&l);
-double *m5 = op1(m4,&l);
-//double *m6 = op1(m5,&l);
-show(m5,l);//*/
 
-//cout<<sqrt((m2[20] - m2[18])* m2[18]*m2[15]   )  <<"<<<"<<endl;//sqrt(((1/M_PI)-(1/8))/(5*8))
-/*for(int i=0;i<31;i++){
-       cout<<f[i](2)<<endl;
-
-} //*/
 free(m2);
-//free(f1);
-/*
-free(m3);
-free(m4);
-free(m5);
-//free(m6);
-//*/
+
     return 0;
 }
