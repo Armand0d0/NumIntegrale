@@ -1,7 +1,7 @@
 # NUMINTEGRALE
 Blalal 
 
-$d$^lf$df
+
  ee 
 ![alt text](./Int0.png?raw=true)
 
